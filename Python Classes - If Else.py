@@ -6,8 +6,8 @@ class DataFrameModifier():
     def __init__(self, dataframe):
         self.dataframe =dataframe
 
-    def if_then_str(self, col):
-        conditional =self.dataframe[col].apply(lambda x: np.where(x == 'A', 1, np.where(x =='AAMC',2,np.where(x == 'AAME',3,np.where(x =='ZX',10,4)))))
+    def if_then_str(self, col_name):
+        conditional =self.dataframe[col_name].apply(lambda x: np.where(x == 'A', 1, np.where(x =='AAMC',2,np.where(x == 'AAME',3,np.where(x =='ZX',10,4)))))
         return conditional
     
     def if_then_numeric_str(self, col_name):
@@ -21,3 +21,11 @@ list2_ = ['A','AAMC','ZX']
 data = {'Account':list_ , 'Stock_Indices':list2_}
 df = pd.DataFrame(data =data)
 print(df)
+
+#Test the classes on dataframe
+modifier = DataFrameModifier(df)
+df['modifier'] = modifier.if_then_str(col_name= 'Stock_Indices')
+
+df['modifier_2'] =modifier.if_then_numeric_str(col_name='Account')
+print(df)
+
