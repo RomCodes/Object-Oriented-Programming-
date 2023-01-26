@@ -7,7 +7,7 @@ customtkinter.set_appearance_mode('dark')
 customtkinter.set_default_color_theme('blue')
 
 root = customtkinter.CTk()
-
+    
 root.geometry('600x500') #window size
 
 frame = customtkinter.CTkFrame(master =root)
@@ -28,7 +28,14 @@ submit.pack(pady =20, padx =10)
 rememberMe =customtkinter.CTkCheckBox(master= frame, text= 'Remember Me')
 submit.pack(pady =20, padx =10)
 
+
+usr = username.get() # get text from line 0 character 0 till the end)
+passwrd = password.get() # get text from line 0 character 0 till the end)
+
+
+
 root.mainloop()
+
 
 
 
