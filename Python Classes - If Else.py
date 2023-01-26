@@ -2,6 +2,18 @@
 import pandas as pd
 import numpy as np
 
+###Create a dummy dataframe
+list_ = ['ABC::1234545432', 'AB23423432', 'A234523423']
+list2_ = ['A','AAMC','ZX']
+list3_ =[2,5,999999999990]
+
+data = {'Account':list_ , 'Stock_Indices':list2_, 'Even_Odd':list3_}
+df = pd.DataFrame(data =data)
+print(df)
+
+
+
+#Parent Class
 class DataFrameModifier():
     def __init__(self, dataframe):
         self.dataframe =dataframe
@@ -13,19 +25,25 @@ class DataFrameModifier():
     def if_then_numeric_str(self, col_name):
         return self.dataframe[col_name].apply(lambda x: x[5:] if x.startswith('ABC') else x[4:] if x.startswith('AB') else x)
 
-    
-###Create a dummy dataframe
-list_ = ['ABC::1234545432', 'AB23423432', 'A234523423']
-list2_ = ['A','AAMC','ZX']
-
-data = {'Account':list_ , 'Stock_Indices':list2_}
-df = pd.DataFrame(data =data)
-print(df)
-
 #Test the classes on dataframe
 modifier = DataFrameModifier(df)
 df['modifier'] = modifier.if_then_str(col_name= 'Stock_Indices')
 
 df['modifier_2'] =modifier.if_then_numeric_str(col_name='Account')
+
+#Child Class
+class DataFrameBuilder(DataFrameModifier):
+    def __init__ (self, dataframe):
+        super().__init__(dataframe)
+        self.dataframe =dataframe
+
+    def even_odd_child_test(self, col_name):
+        return self.dataframe[col_name].apply(lambda x: np.where(x % 2 != 0, 'Odd', np.where(x % 2 == 0 and x >10000,'Even & Large Number', np.where(x % 2 ==0, 'Even','Error'))))
+    
+
+child_modifier = DataFrameBuilder(df)
+df['test_even_odd'] =child_modifier.even_odd_child_test(col_name= 'Even_Odd')
 print(df)
+   
+
 
