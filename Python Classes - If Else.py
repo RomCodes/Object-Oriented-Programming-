@@ -45,5 +45,23 @@ child_modifier = DataFrameBuilder(df)
 df['test_even_odd'] =child_modifier.even_odd_child_test(col_name= 'Even_Odd')
 print(df)
    
+#Further cases to incorporate into OOP
+""" import math
+import os
+import random
+import re
+import sys
 
 
+
+if __name__ == '__main__':
+    n = int(input().strip())
+    if n % 2 != 0:
+        print('Weird')
+    elif n%2 ==0 and n < 6:
+        print('Not Weird')
+    elif n%2 ==0 and  (6<= n <=20):
+        print('Weird')
+    elif n%2 ==0 and n >20:
+        print('Not Weird')
+          """
