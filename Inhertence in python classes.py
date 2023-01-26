@@ -2,10 +2,10 @@
 #A CHILD CLASS CAN INHERIT THE METHODS AND ATTRIBUTES FROM A PARENT CLASS
 
 class Person():
-    def __init__(self, name, age, colour, year):
+    def __init__(self, name, age, fav_colour, year):
         self.name =name
         self.age =age
-        self.colour = colour
+        self.fav_colour = fav_colour
         self.year = year
 
 #method to calc year of birth
@@ -19,7 +19,7 @@ class Person():
 
 
 
-new_person = Person(name= 'Renan Shrestha', age= 6, colour = 'white', year= 2023)
+new_person = Person(name= 'Renan Shrestha', age= 6, fav_colour = 'white', year= 2023)
 print(new_person.year_of_birth())
 
 print(new_person.project_age(projection_year= 2045))
