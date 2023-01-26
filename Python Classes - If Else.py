@@ -14,7 +14,7 @@ class DataFrameModifier():
         return self.dataframe[col_name].apply(lambda x: x[5:] if x.startswith('ABC') else x[4:] if x.startswith('AB') else x)
 
     
-#Create a dummy dataframe
+###Create a dummy dataframe
 list_ = ['ABC::1234545432', 'AB23423432', 'A234523423']
 list2_ = ['A','AAMC','ZX']
 
