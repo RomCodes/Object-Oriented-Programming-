@@ -18,11 +18,11 @@ class DataFrameModifier():
     def __init__(self, dataframe):
         self.dataframe =dataframe
 
-    def if_then_str(self, col_name):
+    def if_then_str(self, col_name) -> int:
         conditional =self.dataframe[col_name].apply(lambda x: np.where(x == 'A', 1, np.where(x =='AAMC',2,np.where(x == 'AAME',3,np.where(x =='ZX',10,4)))))
         return conditional
     
-    def if_then_numeric_str(self, col_name):
+    def if_then_numeric_str(self, col_name) -> str:
         return self.dataframe[col_name].apply(lambda x: x[5:] if x.startswith('ABC') else x[4:] if x.startswith('AB') else x)
 
 #Test the classes on dataframe
@@ -37,7 +37,7 @@ class DataFrameBuilder(DataFrameModifier):
         super().__init__(dataframe)
         self.dataframe =dataframe
 
-    def even_odd_child_test(self, col_name):
+    def even_odd_child_test(self, col_name) -> str:
         return self.dataframe[col_name].apply(lambda x: np.where(x % 2 != 0, 'Odd', np.where(x % 2 == 0 and x >10000,'Even & Large Number', np.where(x % 2 ==0, 'Even','Error'))))
     
 
