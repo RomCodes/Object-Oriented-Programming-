@@ -31,6 +31,8 @@ class Person():
 
 
 #child class Student inherits the attributes of the parent class using the super() init function
+
+#super().__init__ should call all the parent class attributes however the def __init__ can have additional child class attributes    
 class Student(Person):
     def __init__(self, name, age, fav_colour, year, human, student_no):
         super().__init__(name, age, fav_colour, year, human)
