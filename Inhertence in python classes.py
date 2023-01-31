@@ -58,7 +58,7 @@ print(new_person.year_of_birth())
 
 print(new_person.project_age(projection_year= 2045))
 
-person1 = Person(name ='Romish Shrestha', age= 39, fav_colour= 'black-blue', year =2022, human =False)
+person1 = Person(name ='Romish S', age= 39, fav_colour= 'black-blue', year =2022, human =False)
 print(person1.year_of_birth())
 
 print(person1.human)
