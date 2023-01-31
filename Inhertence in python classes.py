@@ -62,4 +62,4 @@ print(person1.human)
 check_student = Student(name = 'Shraey Shrestha', age = 5, fav_colour= 'Green',year = 2019, human = False, student_no= 333)
 check_child_class = check_student.student_2()
 print(check_child_class)
-print(Student.human)
+print(Student.human) #child class has access to parent class attributes
