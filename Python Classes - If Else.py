@@ -25,11 +25,7 @@ class DataFrameModifier():
     def if_then_numeric_str(self, col_name) -> str:
         return self.dataframe[col_name].apply(lambda x: x[5:] if x.startswith('ABC') else x[4:] if x.startswith('AB') else x)
 
-#Test the classes on dataframe
-modifier = DataFrameModifier(df)
-df['modifier'] = modifier.if_then_str(col_name= 'Stock_Indices')
 
-df['modifier_2'] =modifier.if_then_numeric_str(col_name='Account')
 
 #Child Class
 class DataFrameBuilder(DataFrameModifier):
@@ -40,10 +36,19 @@ class DataFrameBuilder(DataFrameModifier):
     def even_odd_child_test(self, col_name) -> str:
         return self.dataframe[col_name].apply(lambda x: np.where(x % 2 != 0, 'Odd', np.where(x % 2 == 0 and x >10000,'Even & Large Number', np.where(x % 2 ==0, 'Even','Error'))))
     
+#Test the classes on dataframe
+modifier = DataFrameModifier(df)
+df['modifier'] = modifier.if_then_str(col_name= 'Stock_Indices')
 
+df['modifier_2'] =modifier.if_then_numeric_str(col_name='Account')
 child_modifier = DataFrameBuilder(df)
 df['test_even_odd'] =child_modifier.even_odd_child_test(col_name= 'Even_Odd')
 print(df)
+
+#Initiate Child class
+dfbuilder = DataFrameBuilder(dataframe= df)
+print(dfbuilder.even_odd_child_test(col_name= 'Even_Odd')) #use child class function
+print(dfbuilder.if_then_str(col_name= 'Stock_Indices')) #child class accessing parent class function
    
 #Further cases to incorporate into OOP
 """ import math
