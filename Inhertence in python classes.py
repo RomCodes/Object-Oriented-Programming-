@@ -39,9 +39,13 @@ class Student(Person):
 
         self.student_no = student_no
         
-    def student_2(self):
+    def verify_student(self):
 
-        return self.student_no*2
+        if self.student_no in [23423423, 3423432, 42341]:
+            return "Access Granted"
+        else:
+            return "You are not a student. Please register"
+
 
     
 
@@ -49,7 +53,7 @@ class Student(Person):
 
 #test
 
-new_person = Person(name= 'Renan Shrestha', age= 6, fav_colour = 'white', year= 2023, human =True)
+new_person = Person(name= 'Renan K', age= 6, fav_colour = 'white', year= 2023, human =True)
 print(new_person.year_of_birth())
 
 print(new_person.project_age(projection_year= 2045))
@@ -59,7 +63,22 @@ print(person1.year_of_birth())
 
 print(person1.human)
 
-check_student = Student(name = 'Shraey Shrestha', age = 5, fav_colour= 'Green',year = 2019, human = False, student_no= 333)
-check_child_class = check_student.student_2()
+
+check_student = Student(name = 'Shraey K', age = 5, fav_colour= 'Green',year = 2019, human = False, student_no= 42341)
+check_child_class = check_student.verify_student()
 print(check_child_class)
 print(Student.human) #child class has access to parent class attributes.
+print(check_student.name) #in order for the child class to access the parent attributes the class has to first be initialised
+
+#self is the object you initiate
+Suprina = Person(name = 'Suprina B', age = 35, fav_colour= 'Orange', year= 2023, human= False)
+print(Suprina.project_age(projection_year= 2050))
+print(Suprina.fav_colour)
+
+#initiate the child class
+Romish = Student(name = 'Romish S', age = 39, fav_colour= 'Black',year =2023, human =False, student_no= 890890)
+
+#Child class now has access to all the attributes of the parent class
+print(Romish.project_age(projection_year= 2035)) 
+print(Romish.year_of_birth())
+print(Romish.verify_student())
