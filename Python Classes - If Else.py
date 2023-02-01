@@ -3,13 +3,15 @@ import pandas as pd
 import numpy as np
 
 ###Create a dummy dataframe
-list_ = ['ABC::1234545432', 'AB23423432', 'A234523423']
-list2_ = ['A','AAMC','ZX']
-list3_ =[2,5,999999999990]
+if __name__ == '__main__':
+        
+    list_ = ['ABC::1234545432', 'AB23423432', 'A234523423']
+    list2_ = ['A','AAMC','ZX']
+    list3_ =[2,5,999999999990]
 
-data = {'Account':list_ , 'Stock_Indices':list2_, 'Even_Odd':list3_}
-df = pd.DataFrame(data =data)
-print(df)
+    data = {'Account':list_ , 'Stock_Indices':list2_, 'Even_Odd':list3_}
+    df = pd.DataFrame(data =data)
+    print(df)
 
 
 
@@ -37,18 +39,21 @@ class DataFrameBuilder(DataFrameModifier):
         return self.dataframe[col_name].apply(lambda x: np.where(x % 2 != 0, 'Odd', np.where(x % 2 == 0 and x >10000,'Even & Large Number', np.where(x % 2 ==0, 'Even','Error'))))
     
 #Test the classes on dataframe
-modifier = DataFrameModifier(df)
-df['modifier'] = modifier.if_then_str(col_name= 'Stock_Indices')
 
-df['modifier_2'] =modifier.if_then_numeric_str(col_name='Account')
-child_modifier = DataFrameBuilder(df)
-df['test_even_odd'] =child_modifier.even_odd_child_test(col_name= 'Even_Odd')
-print(df)
+if __name__ == '__main__':
 
-#Initiate Child class
-dfbuilder = DataFrameBuilder(dataframe= df)
-print(dfbuilder.even_odd_child_test(col_name= 'Even_Odd')) #use child class function
-print(dfbuilder.if_then_str(col_name= 'Stock_Indices')) #child class accessing parent class function
+    modifier = DataFrameModifier(df)
+    df['modifier'] = modifier.if_then_str(col_name= 'Stock_Indices')
+
+    df['modifier_2'] =modifier.if_then_numeric_str(col_name='Account')
+    child_modifier = DataFrameBuilder(df)
+    df['test_even_odd'] =child_modifier.even_odd_child_test(col_name= 'Even_Odd')
+    print(df)
+
+    #Initiate Child class
+    dfbuilder = DataFrameBuilder(dataframe= df)
+    print(dfbuilder.even_odd_child_test(col_name= 'Even_Odd')) #use child class function
+    print(dfbuilder.if_then_str(col_name= 'Stock_Indices')) #child class accessing parent class function
    
 #Further cases to incorporate into OOP
 """ import math
